@@ -65,7 +65,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>com.taikang.tkylcurl.Main</mainClass>
+							<mainClass>org.bm.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
