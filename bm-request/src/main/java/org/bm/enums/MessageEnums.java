@@ -1,4 +1,4 @@
-package com.taikang.tkylcurl.enums;
+package org.bm.enums;
 
 /**
  * 信息提示

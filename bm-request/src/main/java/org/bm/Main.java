@@ -1,4 +1,4 @@
-package com.taikang.tkylcurl;
+package org.bm;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,8 +18,10 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+
+import org.bm.enums.MessageEnums;
+
 import com.google.common.base.Joiner;
-import com.taikang.tkylcurl.enums.MessageEnums;
 
 import io.airlift.airline.Arguments;
 import io.airlift.airline.Command;
@@ -41,7 +43,7 @@ import okio.Sink;
 
 @Command(name=Main.NAME,description="A curl for the next-generation web.")
 public class Main extends HelpOption implements Runnable{
-    static final String NAME = "tkcurl";
+    static final String NAME = "bm-request";
     static final int DEFAULT_TIMEOUT=-1;
     private static Logger frameLogger;
 
@@ -107,16 +109,16 @@ public class Main extends HelpOption implements Runnable{
      */
     @Arguments(title="url",description="Remote resource URL")
     public String url;
-    
+
     @Option(name="-c",description="Number of multiple requests to perform at a time. Default is one request at a time.")
     public int concurrent=1;
-    
+
     @Option(name="-n",description="Number of requests to perform for the benchmarking session. The default is to just perform a single request which usually leads to non-representative benchmarking results.")
     public int requests=1;
-    
+
     private OkHttpClient client;
 
-    static Main fromArgs(String... args){
+    public static Main fromArgs(String... args){
         return SingleCommand.singleCommand(Main.class).parse(args);
     }
 
@@ -156,7 +158,7 @@ public class Main extends HelpOption implements Runnable{
         handler.setFormatter(simpleFormatter);
     }
 
-    private OkHttpClient createClient(){
+    public OkHttpClient createClient(){
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.followSslRedirects(followRedirects);
         if(connectTimeout!=DEFAULT_TIMEOUT){
@@ -211,7 +213,7 @@ public class Main extends HelpOption implements Runnable{
         } 
     }
 
-    Request createRequest(){
+    public Request createRequest(){
         Request.Builder request = new Request.Builder();
         request.url(url);
         request.method(getRequestMethod(), getRequestBody());

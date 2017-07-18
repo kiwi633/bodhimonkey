@@ -6,7 +6,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okio.Buffer;
 
-import static com.taikang.tkylcurl.Main.fromArgs;
+import static org.bm.Main.fromArgs;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
