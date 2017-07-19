@@ -47,13 +47,13 @@ public class Main implements Runnable{
 
     private OkHttpClient client;
 
-    public static Main fromArgs(String... args){
-        return SingleCommand.singleCommand(Main.class).parse(args);
+    public static CommandTemlpate fromArgs(String... args){
+        return SingleCommand.singleCommand(CommandTemlpate.class).parse(args);
     }
 
     public static void main( String[] args ){
         Main run = new Main();
-        commandTemlpate = SingleCommand.singleCommand(CommandTemlpate.class).parse(args);
+        commandTemlpate = fromArgs(args);
         if(args==null|| args.length==0){
             System.out.println(MessageEnums.NOT_COMMAND.value());
         }else{
