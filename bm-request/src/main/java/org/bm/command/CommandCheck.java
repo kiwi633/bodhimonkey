@@ -11,7 +11,7 @@ import org.bm.util.StringUtils;
 public class CommandCheck {
     public static String checkCommand(CommandTemlpate commandTemlpate) {
         if (StringUtils.isEmpty(commandTemlpate.url.trim())) {
-            return MessageEnums.NOT_HOST.value();
+            return MessageEnums.NOT_URL.value();
         }
 
         if (checkUrl(commandTemlpate.url.trim())) {
