@@ -44,9 +44,9 @@ import okio.Sink;
  * 
  */
 public class CommandRun implements Runnable {
-    static final String           NAME            = "bm-request";
-    static final int              DEFAULT_TIMEOUT = -1;
-    private static Logger         frameLogger;
+    static final String NAME = "bm-request";
+    static final int DEFAULT_TIMEOUT = -1;
+    private static Logger frameLogger;
     public static CommandTemlpate commandTemlpate;
 
     private OkHttpClient client;
