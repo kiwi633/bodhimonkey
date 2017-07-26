@@ -18,7 +18,6 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import org.bm.command.CommandTemlpate;
-import org.bm.enums.MessageEnums;
 import com.google.common.base.Joiner;
 import io.airlift.airline.SingleCommand;
 import okhttp3.Headers;
@@ -37,29 +36,21 @@ import okio.Sink;
 /**
  * request
  * @author suntong
- *
+ * 
  */
 public class Main implements Runnable{
     static final String NAME = "bm-request";
     static final int DEFAULT_TIMEOUT=-1;
     private static Logger frameLogger;
-    private static CommandTemlpate commandTemlpate ;
+    public static CommandTemlpate commandTemlpate ;
 
     private OkHttpClient client;
 
     public static CommandTemlpate fromArgs(String... args){
         return SingleCommand.singleCommand(CommandTemlpate.class).parse(args);
     }
-
-    public static void main( String[] args ){
-        Main run = new Main();
-        commandTemlpate = fromArgs(args);
-        if(args==null|| args.length==0){
-            System.out.println(MessageEnums.NOT_COMMAND.value());
-        }else{
-            run.run();
-        }
-
+    public Main(CommandTemlpate commandTemlpate) {
+        Main.commandTemlpate = commandTemlpate;
     }
 
     private static String versionString(){
@@ -150,6 +141,7 @@ public class Main implements Runnable{
         request.method(getRequestMethod(), getRequestBody());
         return request.build();
     }
+    
     private String getRequestMethod(){
         if(commandTemlpate.method!=null){
             return commandTemlpate.method;
@@ -187,6 +179,9 @@ public class Main implements Runnable{
         client.connectionPool().evictAll();
     }
 
+    /**
+     * 执行程序
+     */
     public void run() {
         if(commandTemlpate.showHelpIfRequested()){
             return;

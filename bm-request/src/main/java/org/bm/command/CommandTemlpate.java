@@ -2,6 +2,7 @@ package org.bm.command;
 
 import java.util.List;
 
+
 import io.airlift.airline.Arguments;
 import io.airlift.airline.Command;
 import io.airlift.airline.HelpOption;
@@ -79,9 +80,16 @@ public class CommandTemlpate extends HelpOption{
     @Arguments(title="url",description="Remote resource URL")
     public String url;
 
+    /**
+     * 一次执行多个请求
+     */
     @Option(name="-c",description="Number of multiple requests to perform at a time. Default is one request at a time.")
     public int concurrent=1;
 
+    /**
+     * 执行基准测试会话的请求数。默认是执行一个单一的请求
+     */
     @Option(name="-n",description="Number of requests to perform for the benchmarking session. The default is to just perform a single request which usually leads to non-representative benchmarking results.")
     public int requests=1;
+    
 }
