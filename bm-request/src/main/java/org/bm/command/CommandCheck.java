@@ -9,16 +9,18 @@ import org.bm.enums.MessageEnums;
 import org.bm.util.StringUtils;
 
 public class CommandCheck {
-    public static String checkCommand(CommandTemlpate commandTemlpate) {
+    public static boolean checkCommand(CommandTemlpate commandTemlpate) {
         if (StringUtils.isEmpty(commandTemlpate.url.trim())) {
-            return MessageEnums.NOT_URL.value();
+            System.out.println(MessageEnums.NOT_URL.value());
+            return false;
         }
 
-        if (checkUrl(commandTemlpate.url.trim())) {
-            return MessageEnums.NOT_URL.value();
+        if (!checkUrl(commandTemlpate.url.trim())) {
+            System.out.println(MessageEnums.ERROR_URL.value());
+            return false;
         }
 
-        return commandTemlpate.url.trim();
+        return true;
     }
 
     /**
