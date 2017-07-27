@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.bm</groupId>
-	<artifactId>request</artifactId>
+	<artifactId>bm-request</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>bm-request</name>
 
