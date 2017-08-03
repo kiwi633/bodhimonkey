@@ -3,7 +3,6 @@ package org.bm;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.bm.command.CommandCheck;
 import org.bm.command.CommandTemlpate;
 import org.bm.enums.MessageEnums;
 
@@ -24,9 +23,6 @@ public class Main {
 
     public static void main(String[] args) {
         commandTemlpate = fromArgs(args);
-        if (!CommandCheck.checkCommand(commandTemlpate)) {
-            return;
-        }
         ExecutorService pool = Executors.newFixedThreadPool(commandTemlpate.concurrent);
         if (args == null || args.length == 0) {
             System.out.println(MessageEnums.NOT_COMMAND.value());

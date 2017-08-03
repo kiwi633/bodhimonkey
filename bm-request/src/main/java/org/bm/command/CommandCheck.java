@@ -10,7 +10,7 @@ import org.bm.util.StringUtils;
 
 public class CommandCheck {
     public static boolean checkCommand(CommandTemlpate commandTemlpate) {
-        if (StringUtils.isEmpty(commandTemlpate.url.trim())) {
+        if (StringUtils.isEmpty(commandTemlpate.url)) {
             System.out.println(MessageEnums.NOT_URL.value());
             return false;
         }
