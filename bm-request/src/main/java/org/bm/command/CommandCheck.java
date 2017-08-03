@@ -20,6 +20,10 @@ public class CommandCheck {
             return false;
         }
 
+        if (!checkHOST(commandTemlpate.url.trim())) {
+            System.out.println(MessageEnums.ERROR_URL.value());
+            return false;
+        }
         return true;
     }
 
@@ -46,14 +50,22 @@ public class CommandCheck {
     public static boolean checkHOST(String url) {
         Pattern p = Pattern.compile("[^//]*?\\.(com|cn|net|org|biz|info|cc|tv)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = p.matcher(url);
-        matcher.find();
-        try {
-            InetAddress.getAllByName(matcher.group());
-        } catch (UnknownHostException e) {
-            System.out.println(MessageEnums.NOT_HOST.value() + url);
-            return false;
+        String message = MessageEnums.NOT_HOST.value() + url;
+        if (matcher.find()) {
+            try {
+                InetAddress[] inetAddresses = InetAddress.getAllByName(matcher.group());
+                if (inetAddresses == null || inetAddresses.length == 0) {
+                    System.out.println(message);
+                    return false;
+                }
+                return true;
+            } catch (UnknownHostException e) {
+                System.out.println(message);
+                return false;
+            }
         }
-        return true;
+        System.out.println(message);
+        return false;
     }
 
 }
