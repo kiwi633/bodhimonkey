@@ -1,11 +1,12 @@
 {
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "Run test.js",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/node_postbm/filetest.js",
+            "program": "${workspaceRoot}/node_postbm/test.js",
             "stopOnEntry": false,
             "args": [],
             "cwd": "${workspaceRoot}",
